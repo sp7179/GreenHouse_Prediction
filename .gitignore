@@ -1,3 +1,20 @@
+# echo "# GreenHouse_Prediction" >> README.md
+# git init
+# git add .
+# git commit -m "first commit"
+# git branch -M main
+# git remote add origin https://github.com/sp7179/GreenHouse_Prediction.git
+# git push -u origin main
+
+# for updating
+# git status
+# git add .
+# git commit -m "Your commit message describing the changes"
+# git pull origin main --rebase
+# git push origin main
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -37,3 +54,4 @@ Desktop.ini
 *.pid
 *.err
 *.bak
+
