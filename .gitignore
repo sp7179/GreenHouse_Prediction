@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+
+# VS Code settings
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Data files (optional: keep raw data in Git if needed)
+*.csv
+*.xlsx
+
+# Model files
+*.pkl
+*.joblib
+
+# Logs and outputs
+*.log
+*.out
+*.DS_Store
+
+# OS-specific
+Thumbs.db
+Desktop.ini
+
+# Python crash logs
+*.pid
+*.err
+*.bak
