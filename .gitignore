@@ -1,57 +1,24 @@
-# echo "# GreenHouse_Prediction" >> README.md
-# git init
-# git add .
-# git commit -m "first commit"
-# git branch -M main
-# git remote add origin https://github.com/sp7179/GreenHouse_Prediction.git
-# git push -u origin main
-
-# for updating
-# git status
-# git add .
-# git commit -m "Your commit message describing the changes"
-# git pull origin main --rebase
-# git push origin main
-
-
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environment
-.venv/
-env/
-venv/
-ENV/
-env.bak/
-
-# VS Code settings
-.vscode/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# Data files (optional: keep raw data in Git if needed)
-*.csv
-*.xlsx
-
-# Model files
-*.pkl
-*.joblib
-
-# Logs and outputs
+# Logs
+logs
 *.log
-*.out
-*.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# OS-specific
-Thumbs.db
-Desktop.ini
+node_modules
+dist
+dist-ssr
+*.local
 
-# Python crash logs
-*.pid
-*.err
-*.bak
-
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,51 @@
+@app.route("/forecast", methods=["POST"])
+def forecast():
+    data = request.get_json()
+    sector_code = data.get("industry_code")
+    substance = data.get("substance", "CO2")
+
+    if not sector_code:
+        return jsonify({"error": "No sector code provided"}), 400
+
+    print(f"[DEBUG] Forecast request for sector: {sector_code}, substance: {substance}")
+
+    try:
+        X, y, df_raw = load_and_clean_data(DATA_PATH, substance_filter=substance, sector_filter=sector_code)
+    except KeyError as e:
+        return jsonify({"error": str(e)}), 500
+
+    if X.empty:
+        fallback_X, _, _ = load_and_clean_data(DATA_PATH, substance_filter=substance)
+        if fallback_X.empty:
+            return jsonify({"error": "No data at all for selected gas"}), 200
+
+        last_X = fallback_X.iloc[-1:]
+        prediction = model.predict(last_X)[0]
+        return jsonify({
+            "industry_code": sector_code,
+            "note": "No exact data found; using fallback prediction",
+            "forecast_next_year": round(prediction, 3)
+        })
+
+    # ✅ Generate 15-year forecast
+    last_X = X.iloc[-1:].copy()
+    base_year = int(last_X["Year"].values[0])
+    encoded_code = int(last_X["Industry Code Encoded"].values[0])
+
+    future_years = list(range(base_year + 1, base_year + 16))
+    forecast_values = []
+
+    for year in future_years:
+        future_X = pd.DataFrame({
+            "Industry Code Encoded": [encoded_code],
+            "Year": [year]
+        })
+        pred = model.predict(future_X)[0]
+        forecast_values.append(round(pred, 3))
+
+    return jsonify({
+        "industry_code": sector_code,
+        "base_year": base_year,
+        "forecast_years": future_years,
+        "forecast_values": forecast_values
+    })
